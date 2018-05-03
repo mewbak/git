@@ -6,3 +6,34 @@ Want to make sure `go get ...` always does a shallow git pull/clone? This is a l
 $ go get github.com/schollz/git
 $ export PATH=$GOPATH/bin:$PATH
 ```
+
+# Benchmarks
+
+Here's a benchmark showing a 50% reduction in disk usage. 
+
+## without shallow git
+
+
+```
+% docker run -it golang:1.10 /bin/bash
+root@d9208178f1fa:/go# time go get github.com/juju/juju/...
+real    7m35.631s
+user    1m40.059s
+sys     0m45.436s
+root@d9208178f1fa:/go# du -sh .
+1.1G
+```
+
+## with shallow git
+
+```
+% docker run -it golang:1.10 /bin/bash
+root@68135fb64a3e:/go# go get github.com/schollz/git
+root@68135fb64a3e:/go# export PATH=$GOPATH/bin:$PATH
+root@68135fb64a3e:/go# time go get github.com/juju/juju/...
+real    3m0.335s
+user    0m29.192s
+sys     0m17.253s
+root@d9208178f1fa:/go# du -sh .
+499M    .
+```
