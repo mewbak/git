@@ -4,5 +4,5 @@ Want to make sure `go get ...` always does a shallow git pull/clone? This is a l
 
 ```
 $ go get github.com/schollz/git
-$ export $PATH=$GOPATH/bin:$PATH
+$ export PATH=$GOPATH/bin:$PATH
 ```
